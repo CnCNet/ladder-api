@@ -126,6 +126,16 @@ Route::group(['prefix' => 'api/v1/'], function ()
     Route::post('/qm/{ladderAbbrev}/{playerName}', 'ApiQuickMatchController@matchRequest');
 });
 
+// Client endpoints
+Route::group(['prefix' => 'api/v1/client'], function()
+{
+    // Get user nicknames
+    Route::post('/accounts/user/nicknames', 'ApiClientController@getUserNicknames');
+
+    // Verify idents
+    Route::post('/accounts/verify', 'ApiClientController@verifyAccountsByIdent');
+});
+
 // Ladder Endpoints
 Route::group(['prefix' => 'api/v1/ladder', 'middleware' => 'cache.long.public'], function()
 {
